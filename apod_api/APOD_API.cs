@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Net;
@@ -13,10 +12,10 @@ namespace apod_api
         {
             api_url = api + "?api_key=" + api_key;
         }
-        public async void sendRequest()
+        public void sendRequest()
         {
-            WebRequest request = WebRequest.Create(api);
-            api_response = await request.GetResponseAsync(); 
+            WebRequest request = WebRequest.Create(api_url);
+            api_response = request.GetResponse(); 
             Stream responseStream = api_response.GetResponseStream();
             sr = new StreamReader(responseStream);
 

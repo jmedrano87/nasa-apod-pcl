@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace apod_api
 {
@@ -10,7 +6,13 @@ namespace apod_api
     {
         static void Main(string[] args)
         {
+            APOD_API apod_api = new APOD_API();
 
+            apod_api.sendRequest();
+
+            Console.WriteLine("Title: " + apod_api.apod.title);
+            Console.WriteLine("Date: " + apod_api.apod.date);
+            Console.WriteLine("Url: " + apod_api.apod.url);
         }
     }
 }
