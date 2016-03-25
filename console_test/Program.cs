@@ -9,6 +9,7 @@ namespace apod_api
         {
             APOD_API apod_api = new APOD_API();
             int action;
+            DateTime oldestDate = new DateTime(1995, 06, 25);
 
             do
             {
@@ -41,10 +42,16 @@ namespace apod_api
                         Console.WriteLine("Finished downloading.");
                         break;
                     case 3:
-                        apod_api.setDate(apod_api.apod.date.AddDays(-1));
+                        if (apod_api.apod.date.AddDays(-1) >= oldestDate)
+                            apod_api.setDate(apod_api.apod.date.AddDays(-1));
+                        else
+                            Console.WriteLine("Can't go that far back.");
                         break;
                     case 4:
-                        apod_api.setDate(apod_api.apod.date.AddDays(1));
+                        if (apod_api.apod.date.AddDays(1) <= DateTime.Today)
+                            apod_api.setDate(apod_api.apod.date.AddDays(1));
+                        else
+                            Console.WriteLine("Can't travel to the future!");
                         break;
                     default:
                         Console.WriteLine("Invalid selection.");
