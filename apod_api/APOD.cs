@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace apod_api
 {
-    class APOD
+    public class APOD
     {
         public string copyright { get; set; }
         public string date { get; set; }
