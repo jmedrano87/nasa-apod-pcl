@@ -3,7 +3,7 @@
     public class APOD
     {
         public string copyright { get; set; }
-        public string date { get; set; }
+        public System.DateTime date { get; set; }
         public string explanation { get; set; }
         public string hdurl { get; set; }
         public string media_type { get; set; }
