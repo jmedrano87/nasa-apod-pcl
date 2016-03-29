@@ -21,9 +21,9 @@ namespace apod_api
             sr = new StreamReader(responseStream);
             myAPOD = JsonConvert.DeserializeObject<APOD>(sr.ReadToEnd());
 
-            sr.Close();
-            responseStream.Close();
-            api_response.Close();
+            sr.Dispose();
+            responseStream.Dispose();
+            api_response.Dispose();
         }
         public APOD_API setDate(DateTime newDate)
         {
