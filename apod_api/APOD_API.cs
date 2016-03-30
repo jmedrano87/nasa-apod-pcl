@@ -12,18 +12,18 @@ namespace apod_api
         {
             date = DateTime.Today;
         }
-        public void sendRequest()
+        public async void sendRequest()
         {
             generateURL();
             WebRequest request = WebRequest.Create(api_url);
-            api_response = request.GetResponse(); 
-            Stream responseStream = api_response.GetResponseStream();
-            sr = new StreamReader(responseStream);
+            getResponseTask = request.GetResponseAsync();
+            getResponseTask.Wait();
+            WebResponse responseContent = await getResponseTask;
+            sr = new StreamReader(responseContent.GetResponseStream());
             myAPOD = JsonConvert.DeserializeObject<APOD>(sr.ReadToEnd());
 
             sr.Dispose();
-            responseStream.Dispose();
-            api_response.Dispose();
+            responseContent.Dispose();
         }
         public APOD_API setDate(DateTime newDate)
         {
@@ -39,7 +39,7 @@ namespace apod_api
         private string api = "https://api.nasa.gov/planetary/apod";
         private string api_url;
         private DateTime date;
-        private WebResponse api_response;
+        private Task<WebResponse> getResponseTask;
         private StreamReader sr;
         private APOD myAPOD;
         public APOD apod { get { return myAPOD; } }
