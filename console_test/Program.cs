@@ -14,7 +14,7 @@ namespace apod_api
 
             do
             {
-                apod_api.sendRequest();
+                apod_api.sendRequest().Wait();
                 Console.WriteLine("Title: " + apod_api.apod.title);
                 Console.WriteLine("Date: " + apod_api.apod.date.ToShortDateString());
                 Console.WriteLine("[1] Standard");

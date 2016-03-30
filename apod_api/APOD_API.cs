@@ -12,12 +12,11 @@ namespace apod_api
         {
             date = DateTime.Today;
         }
-        public async void sendRequest()
+        public async Task sendRequest()
         {
             generateURL();
             WebRequest request = WebRequest.Create(api_url);
             getResponseTask = request.GetResponseAsync();
-            getResponseTask.Wait();
             WebResponse responseContent = await getResponseTask;
             sr = new StreamReader(responseContent.GetResponseStream());
             myAPOD = JsonConvert.DeserializeObject<APOD>(sr.ReadToEnd());

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -41,9 +42,9 @@ namespace universal8._1_test
             myAPI.setDate(myAPI.apod.date.AddDays(-1));
             updateImg();
         }
-        private void updateImg()
+        private async void updateImg()
         {
-            myAPI.sendRequest();
+            await myAPI.sendRequest();
             apod_image.Source = new BitmapImage(new Uri(myAPI.apod.url));
         }
         apod_api.APOD_API myAPI = new apod_api.APOD_API();
