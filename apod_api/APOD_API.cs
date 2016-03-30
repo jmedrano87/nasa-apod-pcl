@@ -17,6 +17,7 @@ namespace apod_api
             generateURL();
             WebRequest request = WebRequest.Create(api_url);
             getResponseTask = request.GetResponseAsync();
+            getResponseTask.Wait();
             WebResponse responseContent = await getResponseTask;
             sr = new StreamReader(responseContent.GetResponseStream());
             myAPOD = JsonConvert.DeserializeObject<APOD>(sr.ReadToEnd());
