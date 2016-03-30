@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -25,6 +26,26 @@ namespace universal8._1_test
         public MainPage()
         {
             this.InitializeComponent();
+            updateImg();
         }
+        private void nextBtn_Trig(object sender, RoutedEventArgs e)
+        {
+            if (myAPI.apod.date != DateTime.Now)
+            {
+                myAPI.setDate(myAPI.apod.date.AddDays(1));
+                updateImg();
+            }
+        }
+        private void prevBtn_Trig(object sender, RoutedEventArgs e)
+        {
+            myAPI.setDate(myAPI.apod.date.AddDays(-1));
+            updateImg();
+        }
+        private void updateImg()
+        {
+            myAPI.sendRequest();
+            apod_image.Source = new BitmapImage(new Uri(myAPI.apod.url));
+        }
+        apod_api.APOD_API myAPI = new apod_api.APOD_API();
     }
 }

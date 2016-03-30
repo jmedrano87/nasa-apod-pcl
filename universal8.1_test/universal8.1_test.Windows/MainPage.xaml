@@ -8,6 +8,12 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,10,10,0" Height="480" Width="720">
+            <Image x:Name="apod_image"  Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        </Grid>
+        <Grid VerticalAlignment="Bottom" Width="720" Margin="0,0,0,96">
+            <Button x:Name="prevBtn" Content="Previous" Click="prevBtn_Trig"/>
+            <Button x:Name="nextBtn" HorizontalAlignment="Right" Content="Next" Click="nextBtn_Trig"/>
+        </Grid>
     </Grid>
 </Page>
