@@ -49,7 +49,7 @@ namespace universal8._1_test
         }
         private void nextBtn_Trig(object sender, RoutedEventArgs e)
         {
-            if (myAPI.apod.date != DateTime.Now)
+            if (myAPI.apod.date != DateTime.Today)
             {
                 myAPI.setDate(myAPI.apod.date.AddDays(1));
                 updateImg();
