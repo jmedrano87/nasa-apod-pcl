@@ -11,6 +11,7 @@
     <Grid>
         <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,10,10,0" Height="573" Width="380">
             <Image x:Name="apod_image"  Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <WebView x:Name="apod_video" Visibility="Collapsed"/>
         </Grid>
         <Grid VerticalAlignment="Bottom">
             <Button x:Name="prevBtn" Content="Previous" Click="prevBtn_Trig"/>

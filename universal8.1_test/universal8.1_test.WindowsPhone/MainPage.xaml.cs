@@ -60,11 +60,28 @@ namespace universal8._1_test
             myAPI.setDate(myAPI.apod.date.AddDays(-1));
             updateImg();
         }
-        private void updateImg()
+        private async void updateImg()
         {
-            myAPI.sendRequest();
-            apod_image.Source = new BitmapImage(new Uri(myAPI.apod.url));
+            await myAPI.sendRequest();
+
+            if (myAPI.apod.media_type == "image")
+            {
+                apod_image.Source = new BitmapImage(new Uri(myAPI.apod.url));
+                if (apod_video.Visibility == Visibility.Visible)
+                {
+                    apod_video.Stop();
+                    apod_video.Visibility = Visibility.Collapsed;
+                    apod_image.Visibility = Visibility.Visible;
+                }
+            }
+            else if (myAPI.apod.media_type == "video")
+            {
+                apod_image.Visibility = Visibility.Collapsed;
+                apod_video.Navigate(new Uri(myAPI.apod.url));
+                apod_video.Visibility = Visibility.Visible;
+
+            }
         }
-        apod_api.APOD_API myAPI = new apod_api.APOD_API();
+            apod_api.APOD_API myAPI = new apod_api.APOD_API();
     }
 }
