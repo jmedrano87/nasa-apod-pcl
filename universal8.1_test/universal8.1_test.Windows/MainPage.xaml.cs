@@ -31,7 +31,7 @@ namespace universal8._1_test
         }
         private void nextBtn_Trig(object sender, RoutedEventArgs e)
         {
-            if (myAPI.apod.date != DateTime.Now)
+            if (myAPI.apod.date != DateTime.Today)
             {
                 myAPI.setDate(myAPI.apod.date.AddDays(1));
                 updateImg();
@@ -45,7 +45,23 @@ namespace universal8._1_test
         private async void updateImg()
         {
             await myAPI.sendRequest();
-            apod_image.Source = new BitmapImage(new Uri(myAPI.apod.url));
+
+            if (myAPI.apod.media_type == "image")
+            {
+                apod_image.Source = new BitmapImage(new Uri(myAPI.apod.url));
+                if (apod_video.Visibility == Visibility.Visible)
+                {
+                    apod_video.Stop();
+                    apod_video.Visibility = Visibility.Collapsed;
+                    apod_image.Visibility = Visibility.Visible;
+                }
+            }
+            else if (myAPI.apod.media_type == "video")
+            {
+                apod_image.Visibility = Visibility.Collapsed;
+                apod_video.Navigate(new Uri(myAPI.apod.url));
+                apod_video.Visibility = Visibility.Visible;
+            }
         }
         apod_api.APOD_API myAPI = new apod_api.APOD_API();
     }
