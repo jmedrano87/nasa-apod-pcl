@@ -10,7 +10,7 @@ namespace apod_api
     {
         public APOD_API(string key)
         {
-            Date = DateTime.Today;
+            date = DateTime.Today;
             api_key = key;
         }
         public APOD_API(DateTime date, string key)
