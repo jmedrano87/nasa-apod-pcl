@@ -10,12 +10,12 @@ namespace apod_api
     {
         public APOD_API(string key = "DEMO_KEY")
         {
-            date = DateTime.Today;
+            Date = DateTime.Today;
             api_key = key;
         }
         public APOD_API(DateTime date, string key = "DEMO_KEY")
         {
-            this.date = date;
+            Date = date;
             api_key = key;
         }
         public async Task sendRequest()
@@ -35,8 +35,15 @@ namespace apod_api
             string  api = "https://api.nasa.gov/planetary/apod";
             api_url = api + "?api_key=" + api_key + "&date=" + date.ToString("yyyy-MM-dd");
         }
+        public DateTime Date
+        {
+            set
+            {
+                DateTime min = new DateTime(1995, 06, 16);
+                date = (value > DateTime.Today) ? DateTime.Today : ((value < min) ? min : value);
+            }
+        }
         public string API_key { set { api_key = value; } }
-        public DateTime Date { set { date = value; } }
         private string api_key;
         private string api_url;
         private DateTime date;
