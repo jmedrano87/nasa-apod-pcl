@@ -51,13 +51,13 @@ namespace universal8._1_test
         {
             if (myAPI.apod.date != DateTime.Today)
             {
-                myAPI.setDate(myAPI.apod.date.AddDays(1));
+                myAPI.Date = myAPI.apod.date.AddDays(1);
                 updateImg();
             }
         }
         private void prevBtn_Trig(object sender, RoutedEventArgs e)
         {
-            myAPI.setDate(myAPI.apod.date.AddDays(-1));
+            myAPI.Date = myAPI.apod.date.AddDays(-1);
             updateImg();
         }
         private async void updateImg()

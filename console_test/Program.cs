@@ -55,13 +55,13 @@ namespace apod_api
                         break;
                     case 3:
                         if (apod_api.apod.date.AddDays(-1) >= oldestDate)
-                            apod_api.setDate(apod_api.apod.date.AddDays(-1));
+                            apod_api.Date = apod_api.apod.date.AddDays(-1);
                         else
                             Console.WriteLine("Can't go that far back.");
                         break;
                     case 4:
                         if (apod_api.apod.date.AddDays(1) <= DateTime.Today)
-                            apod_api.setDate(apod_api.apod.date.AddDays(1));
+                            apod_api.Date = apod_api.apod.date.AddDays(1);
                         else
                             Console.WriteLine("Can't travel to the future!");
                         break;
