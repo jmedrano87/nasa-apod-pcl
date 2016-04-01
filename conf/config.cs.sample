@@ -1,0 +1,4 @@
+﻿static internal class config
+{
+    static public string Key { get { return "DEMO_KEY"; } }
+}

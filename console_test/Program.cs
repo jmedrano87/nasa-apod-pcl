@@ -7,11 +7,11 @@ namespace apod_api
     {
         static void Main(string[] args)
         {
-            APOD_API apod_api = new APOD_API();
+            string key = config.Key;
+            APOD_API apod_api = new APOD_API(key);
             int action;
             DateTime oldestDate = new DateTime(1995, 06, 25);
             WebClient dl = new WebClient();
-
             do
             {
                 apod_api.sendRequest().Wait();

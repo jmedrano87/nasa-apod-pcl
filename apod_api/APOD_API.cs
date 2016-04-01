@@ -8,12 +8,12 @@ namespace apod_api
 {
     public sealed class APOD_API
     {
-        public APOD_API(string key = "DEMO_KEY")
+        public APOD_API(string key)
         {
             Date = DateTime.Today;
             api_key = key;
         }
-        public APOD_API(DateTime date, string key = "DEMO_KEY")
+        public APOD_API(DateTime date, string key)
         {
             Date = date;
             api_key = key;

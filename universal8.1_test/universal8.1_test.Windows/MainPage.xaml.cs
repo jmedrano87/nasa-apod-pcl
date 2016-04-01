@@ -63,6 +63,6 @@ namespace universal8._1_test
                 apod_video.Visibility = Visibility.Visible;
             }
         }
-        apod_api.APOD_API myAPI = new apod_api.APOD_API();
+        apod_api.APOD_API myAPI = new apod_api.APOD_API(config.Key);
     }
 }
