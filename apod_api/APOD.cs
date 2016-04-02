@@ -10,5 +10,7 @@
         public string service_version { get; set; }
         public string title { get; set; }
         public string url { get; set; }
+        public string code { get; set; }
+        public string msg { get; set; }
     }
 }
