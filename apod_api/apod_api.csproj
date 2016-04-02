@@ -49,6 +49,7 @@
     <Compile Include="APOD.cs" />
     <Compile Include="APOD_API.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

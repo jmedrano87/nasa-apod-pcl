@@ -21,7 +21,7 @@ namespace apod_api
         public async Task sendRequest()
         {
             generateURL();
-            WebRequest request = WebRequest.Create(api_url);
+            HttpWebRequest request = Util.CreateRequest(new Uri(api_url));
             getResponseTask = request.GetResponseAsync();
             WebResponse responseContent = await getResponseTask;
             sr = new StreamReader(responseContent.GetResponseStream());
