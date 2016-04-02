@@ -50,6 +50,6 @@ namespace ApodPcl
         private Task<WebResponse> getResponseTask;
         private StreamReader sr;
         private APOD myAPOD;
-        public APOD apod { get { return myAPOD; } }
+        public APOD Apod{ get { return myAPOD; } }
     }
 }
