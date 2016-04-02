@@ -31,24 +31,24 @@ namespace universal8._1_test
         }
         private void nextBtn_Trig(object sender, RoutedEventArgs e)
         {
-            if (myAPI.apod.date != DateTime.Today)
+            if (myAPI.Apod.date != DateTime.Today)
             {
-                myAPI.Date = myAPI.apod.date.AddDays(1);
+                myAPI.Date = myAPI.Apod.date.AddDays(1);
                 updateImg();
             }
         }
         private void prevBtn_Trig(object sender, RoutedEventArgs e)
         {
-            myAPI.Date = myAPI.apod.date.AddDays(-1);
+            myAPI.Date = myAPI.Apod.date.AddDays(-1);
             updateImg();
         }
         private async void updateImg()
         {
             await myAPI.sendRequest();
 
-            if (myAPI.apod.media_type == "image")
+            if (myAPI.Apod.media_type == "image")
             {
-                apod_image.Source = new BitmapImage(new Uri(myAPI.apod.url));
+                apod_image.Source = new BitmapImage(new Uri(myAPI.Apod.url));
                 if (apod_video.Visibility == Visibility.Visible)
                 {
                     apod_video.Stop();
@@ -56,10 +56,10 @@ namespace universal8._1_test
                     apod_image.Visibility = Visibility.Visible;
                 }
             }
-            else if (myAPI.apod.media_type == "video")
+            else if (myAPI.Apod.media_type == "video")
             {
                 apod_image.Visibility = Visibility.Collapsed;
-                apod_video.Navigate(new Uri(myAPI.apod.url));
+                apod_video.Navigate(new Uri(myAPI.Apod.url));
                 apod_video.Visibility = Visibility.Visible;
             }
         }

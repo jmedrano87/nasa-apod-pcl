@@ -15,8 +15,8 @@ namespace ApodPcl
             do
             {
                 apod_api.sendRequest().Wait();
-                Console.WriteLine("Title: " + apod_api.apod.title);
-                Console.WriteLine("Date: " + apod_api.apod.date.ToShortDateString());
+                Console.WriteLine("Title: " + apod_api.Apod.title);
+                Console.WriteLine("Date: " + apod_api.Apod.date.ToShortDateString());
                 Console.WriteLine("[1] Standard");
                 Console.WriteLine("[2] HD");
                 Console.WriteLine("[3] Previous Day");
@@ -34,8 +34,8 @@ namespace ApodPcl
                     case 1:
                         Console.WriteLine("Downloading standard photo . . .");
                         try {
-                            dl.DownloadFile(apod_api.apod.url, "apod_"
-                                + apod_api.apod.date.ToString("yyyy-MM-dd") + "_lq.jpg");
+                            dl.DownloadFile(apod_api.Apod.url, "apod_"
+                                + apod_api.Apod.date.ToString("yyyy-MM-dd") + "_lq.jpg");
                             Console.WriteLine("Finished downloading.");
                         }
                         catch (WebException ex) {
@@ -45,8 +45,8 @@ namespace ApodPcl
                     case 2:
                         Console.WriteLine("Downloading hd photo . . .");
                         try {
-                            dl.DownloadFile(apod_api.apod.hdurl, "apod_"
-                                + apod_api.apod.date.ToString("yyyy-MM-dd") + "_hq.jpg");
+                            dl.DownloadFile(apod_api.Apod.hdurl, "apod_"
+                                + apod_api.Apod.date.ToString("yyyy-MM-dd") + "_hq.jpg");
                             Console.WriteLine("Finished downloading.");
                         }
                         catch (WebException ex) {
@@ -54,14 +54,14 @@ namespace ApodPcl
                         }
                         break;
                     case 3:
-                        if (apod_api.apod.date.AddDays(-1) >= oldestDate)
-                            apod_api.Date = apod_api.apod.date.AddDays(-1);
+                        if (apod_api.Apod.date.AddDays(-1) >= oldestDate)
+                            apod_api.Date = apod_api.Apod.date.AddDays(-1);
                         else
                             Console.WriteLine("Can't go that far back.");
                         break;
                     case 4:
-                        if (apod_api.apod.date.AddDays(1) <= DateTime.Today)
-                            apod_api.Date = apod_api.apod.date.AddDays(1);
+                        if (apod_api.Apod.date.AddDays(1) <= DateTime.Today)
+                            apod_api.Date = apod_api.Apod.date.AddDays(1);
                         else
                             Console.WriteLine("Can't travel to the future!");
                         break;
