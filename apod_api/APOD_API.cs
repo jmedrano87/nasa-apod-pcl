@@ -4,16 +4,16 @@ using System.IO;
 using System.Net;
 using Newtonsoft.Json;
 
-namespace apod_api
+namespace ApodPcl
 {
-    public sealed class APOD_API
+    public sealed class API
     {
-        public APOD_API(string key)
+        public API(string key)
         {
             date = DateTime.Today;
             api_key = key;
         }
-        public APOD_API(DateTime date, string key)
+        public API(DateTime date, string key)
         {
             Date = date;
             api_key = key;

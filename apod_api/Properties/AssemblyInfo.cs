@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("apod_api")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("nasa-apod-pcl")]
+[assembly: AssemblyDescription("A .Net Portable Class Library for requesting the Astronomy Picture of the Day from NASA's APOD API.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("apod_api")]
+[assembly: AssemblyProduct("apod_pcl")]
 [assembly: AssemblyCopyright("Copyright © 2016 Jose Medrano")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

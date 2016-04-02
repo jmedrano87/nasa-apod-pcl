@@ -2,7 +2,7 @@
 using System.Net;
 using System.Reflection;
 
-namespace apod_api
+namespace ApodPcl
 {
     static internal class Util
     {

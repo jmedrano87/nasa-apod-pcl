@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Net;
 
-namespace apod_api
+namespace ApodPcl
 {
     class Program
     {
         static void Main(string[] args)
         {
             string key = config.Key;
-            APOD_API apod_api = new APOD_API(key);
+            API apod_api = new API(key);
             int action;
             DateTime oldestDate = new DateTime(1995, 06, 25);
             WebClient dl = new WebClient();

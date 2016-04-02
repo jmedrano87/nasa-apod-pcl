@@ -1,4 +1,4 @@
-﻿namespace apod_api
+﻿namespace ApodPcl
 {
     public class APOD
     {

@@ -7,8 +7,8 @@
     <ProjectGuid>{272D99E8-ACB3-4A53-B0B1-E983D854D3FE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>APOD_API</RootNamespace>
-    <AssemblyName>APOD_API</AssemblyName>
+    <RootNamespace>ApodPcl</RootNamespace>
+    <AssemblyName>ApodPcl</AssemblyName>
     <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
