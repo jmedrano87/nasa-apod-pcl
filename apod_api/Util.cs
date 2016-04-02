@@ -18,7 +18,7 @@ namespace apod_api
         static public HttpWebRequest CreateRequest(Uri url)
         {
             HttpWebRequest req = HttpWebRequest.CreateHttp(url);
-            SetHeader(req, "User-Agent", "jmedrano87/nasaapod (PCL) beta");
+            SetHeader(req, "User-Agent", "nasa-apod-pcl/beta (.Net PCL)");
 
             return req;
         }
