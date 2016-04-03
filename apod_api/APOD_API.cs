@@ -50,8 +50,15 @@ namespace ApodPcl
         public async Task sendRequest()
         {
             generateURL();
-            Stream responseStream = await Util.GetHttpResponseStream(new Uri(api_url));
-            myAPOD = Util.JsonToApod(responseStream);
+            try
+            {
+                Stream responseStream = await Util.GetHttpResponseStream(new Uri(api_url));
+                myAPOD = Util.JsonToApod(responseStream);
+            }
+            catch (System.Net.Http.HttpRequestException ex)
+            {
+                myAPOD = Util.Exception2Apod(ex);
+            }
         }
         public async Task<Uri> GetUri(bool hd = false)
         {

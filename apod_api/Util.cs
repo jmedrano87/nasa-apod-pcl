@@ -17,7 +17,7 @@ namespace ApodPcl
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.CacheControl = cacheHeader;
             client.DefaultRequestHeaders.Add("User-Agent", "nasa-apod-pcl/beta (.Net PCL)");
-            
+
             Stream response = await client.GetStreamAsync(url);
 
             return response;
@@ -29,6 +29,15 @@ namespace ApodPcl
             settings.DateTimeFormat = new System.Runtime.Serialization.DateTimeFormat("yyyy-MM-dd");
             DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(APOD), settings);
             return (APOD)json.ReadObject(stream);
+        }
+        static internal APOD Exception2Apod(Exception e)
+        {
+            APOD apod = new APOD();
+            apod.date = DateTime.Now;
+            apod.title = "Error! See APOD.explanation";
+            apod.explanation = e.Message;
+
+            return apod;
         }
     }
 }
