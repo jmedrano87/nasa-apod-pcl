@@ -25,7 +25,14 @@ namespace ApodPcl
         public async Task<Uri> GetUri(bool hd = false)
         {
             await sendRequest();
-            return (hd) ? myAPOD.hdurl : myAPOD.url;
+
+            return (hd && !(myAPOD.media_type == "video")) ? myAPOD.hdurl : myAPOD.url;
+        }
+        public async Task<Uri> GetUri(DateTime date, bool hd = false)
+        {
+            Date = date;
+
+            return await GetUri(hd);
         }
         private void generateURL()
         {

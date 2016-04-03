@@ -32,11 +32,11 @@ namespace universal8._1_test
         }
         private async void updateImg()
         {
-            await myAPI.sendRequest();
+            Uri uri = await myAPI.GetUri(true);
 
             if (myAPI.Apod.media_type == "image")
             {
-                apod_image.Source = new BitmapImage(myAPI.Apod.url);
+                apod_image.Source = new BitmapImage(uri);
                 if (apod_video.Visibility == Visibility.Visible)
                 {
                     apod_video.Stop();
@@ -47,7 +47,7 @@ namespace universal8._1_test
             else if (myAPI.Apod.media_type == "video")
             {
                 apod_image.Visibility = Visibility.Collapsed;
-                apod_video.Navigate(myAPI.Apod.url);
+                apod_video.Navigate(uri);
                 apod_video.Visibility = Visibility.Visible;
             }
         }
