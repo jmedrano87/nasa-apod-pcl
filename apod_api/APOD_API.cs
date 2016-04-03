@@ -34,6 +34,14 @@ namespace ApodPcl
 
             return await GetUri(hd);
         }
+        public async Task<Uri> GetPrevUri(bool hd = false)
+        {
+            return await GetUri(date.AddDays(-1), hd);          
+        }
+        public async Task<Uri> GetNextUri(bool hd = false)
+        {
+            return await GetUri(date.AddDays(1), hd);
+        }
         private void generateURL()
         {
             string  api = "https://api.nasa.gov/planetary/apod";
