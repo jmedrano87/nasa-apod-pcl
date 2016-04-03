@@ -49,9 +49,9 @@ namespace ApodPcl
         /// </summary>
         public async Task sendRequest()
         {
-            await sendRequest();
-
-            return (hd && !(myAPOD.media_type == "video")) ? myAPOD.hdurl : myAPOD.url;
+            generateURL();
+            Stream responseStream = await Util.GetHttpResponseStream(new Uri(api_url));
+            myAPOD = Util.JsonToApod(responseStream);
         }
         public async Task<Uri> GetUri(bool hd = false)
         {
