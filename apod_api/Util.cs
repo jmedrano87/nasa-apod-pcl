@@ -12,8 +12,13 @@ namespace ApodPcl
     {
         static async internal Task<Stream> GetHttpResponseStream(Uri url)
         {
+            CacheControlHeaderValue cacheHeader = new CacheControlHeaderValue();
+            cacheHeader.MaxAge = TimeSpan.FromDays(7);
+            cacheHeader.MaxStale = true;
             HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.CacheControl = cacheHeader;
             client.DefaultRequestHeaders.Add("User-Agent", "nasa-apod-pcl/beta (.Net PCL)");
+            
             Stream response = await client.GetStreamAsync(url);
 
             return response;
