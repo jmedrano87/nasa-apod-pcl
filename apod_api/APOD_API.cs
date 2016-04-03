@@ -1,19 +1,17 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.IO;
-using System.Net;
-using Newtonsoft.Json;
+using System.Threading.Tasks;
 
-namespace apod_api
+namespace ApodPcl
 {
     /// <summary>
     /// This class handles communicating with NASA's API to retreive details
     /// about the current Astronomy Picture of the Day.
     /// </summary>
-    public sealed class APOD_API
+    public sealed class API
     {
         /// <summary>
-        /// Initializes an instance of <see cref="APOD_API"/>.
+        /// Initializes an instance of <see cref="API"/>.
         /// <para>
         /// <see cref="API_key"/> is set to <paramref name="key"/>
         /// and <see cref="Date"/> is set to <see cref="DateTime.Today"/>.
@@ -21,13 +19,13 @@ namespace apod_api
         /// </summary>
         /// <param name="key">The api key to use when communicating with
         /// NASA's API.</param>
-        public APOD_API(string key)
+        public API(string key)
         {
             date = DateTime.Today;
             api_key = key;
         }
         /// <summary>
-        /// Initializes an instance of <see cref="APOD_API"/>.
+        /// Initializes an instance of <see cref="API"/>.
         /// <para>
         /// <see cref="API_key"/> is set to <paramref name="key"/>
         /// and <see cref="Date"/> is set to <paramref name="date"/>.
@@ -37,7 +35,7 @@ namespace apod_api
         /// NASA's API.</param>
         /// <param name="date">The date to request the APOD for.
         /// <see cref="Date"/> is set to this value.</param>
-        public APOD_API(DateTime date, string key)
+        public API(DateTime date, string key)
         {
             Date = date;
             api_key = key;
@@ -51,15 +49,29 @@ namespace apod_api
         /// </summary>
         public async Task sendRequest()
         {
-            generateURL();
-            WebRequest request = WebRequest.Create(api_url);
-            getResponseTask = request.GetResponseAsync();
-            WebResponse responseContent = await getResponseTask;
-            sr = new StreamReader(responseContent.GetResponseStream());
-            myAPOD = JsonConvert.DeserializeObject<APOD>(sr.ReadToEnd());
+            await sendRequest();
 
-            sr.Dispose();
-            responseContent.Dispose();
+            return (hd && !(myAPOD.media_type == "video")) ? myAPOD.hdurl : myAPOD.url;
+        }
+        public async Task<Uri> GetUri(bool hd = false)
+        {
+            await sendRequest();
+
+            return (hd && !(myAPOD.media_type == "video")) ? myAPOD.hdurl : myAPOD.url;
+        }
+        public async Task<Uri> GetUri(DateTime date, bool hd = false)
+        {
+            Date = date;
+
+            return await GetUri(hd);
+        }
+        public async Task<Uri> GetPrevUri(bool hd = false)
+        {
+            return await GetUri(date.AddDays(-1), hd);
+        }
+        public async Task<Uri> GetNextUri(bool hd = false)
+        {
+            return await GetUri(date.AddDays(1), hd);
         }
         /// <summary>
         /// Forms the url to use for for requests to NASA's API.
@@ -89,12 +101,10 @@ namespace apod_api
         private string api_key;
         private string api_url;
         private DateTime date;
-        private Task<WebResponse> getResponseTask;
-        private StreamReader sr;
         private APOD myAPOD;
         /// <summary>
         /// An object for holding data about the returned Astrononmy Picture of the Day.
         /// </summary>
-        public APOD apod { get { return myAPOD; } }
+        public APOD Apod { get { return myAPOD; } }
     }
 }
