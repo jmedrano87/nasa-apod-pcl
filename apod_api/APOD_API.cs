@@ -22,6 +22,11 @@ namespace ApodPcl
             Stream responseStream = await Util.GetHttpResponseStream(new Uri(api_url));
             myAPOD =  Util.JsonToApod(responseStream);
         }
+        public async Task<Uri> GetUri(bool hd = false)
+        {
+            await sendRequest();
+            return (hd) ? myAPOD.hdurl : myAPOD.url;
+        }
         private void generateURL()
         {
             string  api = "https://api.nasa.gov/planetary/apod";

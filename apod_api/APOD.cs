@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace ApodPcl
 
@@ -10,13 +11,13 @@ namespace ApodPcl
         public string copyright { get; set; }
 
         [DataMember]
-        public System.DateTime date { get; set; }
+        public DateTime date { get; set; }
 
         [DataMember]
         public string explanation { get; set; }
 
         [DataMember]
-        public string hdurl { get; set; }
+        public Uri hdurl { get; set; }
 
         [DataMember]
         public string media_type { get; set; }
@@ -28,6 +29,6 @@ namespace ApodPcl
         public string title { get; set; }
 
         [DataMember]
-        public string url { get; set; }
+        public Uri url { get; set; }
     }
 }

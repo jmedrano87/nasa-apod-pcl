@@ -36,7 +36,7 @@ namespace universal8._1_test
 
             if (myAPI.Apod.media_type == "image")
             {
-                apod_image.Source = new BitmapImage(new Uri(myAPI.Apod.url));
+                apod_image.Source = new BitmapImage(myAPI.Apod.url);
                 if (apod_video.Visibility == Visibility.Visible)
                 {
                     apod_video.Stop();
@@ -47,7 +47,7 @@ namespace universal8._1_test
             else if (myAPI.Apod.media_type == "video")
             {
                 apod_image.Visibility = Visibility.Collapsed;
-                apod_video.Navigate(new Uri(myAPI.Apod.url));
+                apod_video.Navigate(myAPI.Apod.url);
                 apod_video.Visibility = Visibility.Visible;
             }
         }
