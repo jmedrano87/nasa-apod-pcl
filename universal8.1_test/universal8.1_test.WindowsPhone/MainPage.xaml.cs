@@ -37,22 +37,24 @@ namespace universal8._1_test
             // If you are using the NavigationHelper provided by some templates,
             // this event is handled for you.
         }
-        private void nextBtn_Trig(object sender, RoutedEventArgs e)
+        private async void nextBtn_Trig(object sender, RoutedEventArgs e)
         {
             if (myAPI.Apod.date != DateTime.Today)
             {
-                myAPI.Date = myAPI.Apod.date.AddDays(1);
-                updateImg();
+               updateImg(await myAPI.GetNextUri());
             }
         }
-        private void prevBtn_Trig(object sender, RoutedEventArgs e)
+        private async void prevBtn_Trig(object sender, RoutedEventArgs e)
         {
-            myAPI.Date = myAPI.Apod.date.AddDays(-1);
-            updateImg();
+            updateImg(await myAPI.GetPrevUri());
         }
         private async void updateImg()
         {
             Uri uri = await myAPI.GetUri();
+            updateImg(uri);
+        }
+        private void updateImg(Uri uri)
+        {
 
             if (myAPI.Apod.media_type == "image")
             {
