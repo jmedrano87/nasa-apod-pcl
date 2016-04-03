@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using System.IO;
 using System.Net;
-using Newtonsoft.Json;
 
 namespace ApodPcl
 {
@@ -24,10 +22,8 @@ namespace ApodPcl
             HttpWebRequest request = Util.CreateRequest(new Uri(api_url));
             getResponseTask = request.GetResponseAsync();
             WebResponse responseContent = await getResponseTask;
-            sr = new StreamReader(responseContent.GetResponseStream());
-            myAPOD = JsonConvert.DeserializeObject<APOD>(sr.ReadToEnd());
+            myAPOD =  Util.JsonToApod(responseContent.GetResponseStream());
 
-            sr.Dispose();
             responseContent.Dispose();
         }
         private void generateURL()
@@ -48,7 +44,6 @@ namespace ApodPcl
         private string api_url;
         private DateTime date;
         private Task<WebResponse> getResponseTask;
-        private StreamReader sr;
         private APOD myAPOD;
         public APOD Apod{ get { return myAPOD; } }
     }
