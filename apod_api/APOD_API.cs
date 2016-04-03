@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Net;
+using System.IO;
 
 namespace ApodPcl
 {
@@ -19,12 +20,8 @@ namespace ApodPcl
         public async Task sendRequest()
         {
             generateURL();
-            HttpWebRequest request = Util.CreateRequest(new Uri(api_url));
-            getResponseTask = request.GetResponseAsync();
-            WebResponse responseContent = await getResponseTask;
-            myAPOD =  Util.JsonToApod(responseContent.GetResponseStream());
-
-            responseContent.Dispose();
+            Stream responseStream = await Util.GetHttpResponseStream(new Uri(api_url));
+            myAPOD =  Util.JsonToApod(responseStream);
         }
         private void generateURL()
         {
@@ -43,7 +40,6 @@ namespace ApodPcl
         private string api_key;
         private string api_url;
         private DateTime date;
-        private Task<WebResponse> getResponseTask;
         private APOD myAPOD;
         public APOD Apod{ get { return myAPOD; } }
     }

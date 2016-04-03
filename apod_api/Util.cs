@@ -1,28 +1,22 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Reflection;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Runtime.Serialization.Json;
 
 namespace ApodPcl
 {
     static internal class Util
     {
-        static public void SetHeader(HttpWebRequest request, string header, string value)
+        static async internal Task<Stream> GetHttpResponseStream(Uri url)
         {
-            PropertyInfo propInfo = request.GetType().GetRuntimeProperty(header.Replace("-", string.Empty));
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Add("User-Agent", "nasa-apod-pcl/beta (.Net PCL)");
+            Stream response = await client.GetStreamAsync(url);
 
-            if (propInfo != null)
-                propInfo.SetValue(request, value, null);
-            else
-                request.Headers[header] = value;
-        }
-        static public HttpWebRequest CreateRequest(Uri url)
-        {
-            HttpWebRequest req = HttpWebRequest.CreateHttp(url);
-            SetHeader(req, "User-Agent", "nasa-apod-pcl/beta (.Net PCL)");
-
-            return req;
+            return response;
         }
 
         static public APOD JsonToApod(Stream stream)
