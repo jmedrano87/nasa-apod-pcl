@@ -23,7 +23,7 @@ namespace ApodPcl
             return response;
         }
 
-        static public APOD JsonToApod(Stream stream)
+        static internal APOD JsonToApod(Stream stream)
         {
             DataContractJsonSerializerSettings settings = new DataContractJsonSerializerSettings();
             settings.DateTimeFormat = new System.Runtime.Serialization.DateTimeFormat("yyyy-MM-dd");
