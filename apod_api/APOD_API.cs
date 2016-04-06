@@ -33,7 +33,7 @@ namespace ApodPcl
         /// </summary>
         /// <param name="key">The api key to use when communicating with
         /// NASA's API.</param>
-        /// <param name="date">The date to request the APOD for.
+        /// <param name="date">The date to request the Astronomy Picture of the Day for.
         /// <see cref="Date"/> is set to this value.</param>
         public API(DateTime date, string key)
         {
@@ -44,9 +44,13 @@ namespace ApodPcl
         /// Sends a request to NASA's API for the day <see cref="Date"/>
         /// and using the api key <see cref="API_key"/>.
         /// <para>
-        /// The response is used to populate the fields of <see cref="apod"/>.
+        /// The response is used to populate the fields of <see cref="Apod"/>.
         /// </para>
         /// </summary>
+        /// <remarks>
+        /// When an <see cref="System.Net.Http.HttpRequestException"/> occurs, "Error" is specifed in
+        /// Apod.title and the <see cref="Exception.Message"/> in Apod.explanation. All other fields are null.
+        /// </remarks>
         public async Task sendRequest()
         {
             generateURL();
@@ -60,22 +64,43 @@ namespace ApodPcl
                 myAPOD = Util.Exception2Apod(ex);
             }
         }
+        /// <summary>
+        /// Get the Uri to the media.
+        /// </summary>
+        /// <param name="hd">If true and media is an image, the HD uri is returned. Default is false</param>
+        /// <returns>A Uri pointing to the requested media.</returns>
         public async Task<Uri> GetUri(bool hd = false)
         {
             await sendRequest();
 
             return (hd && !(myAPOD.media_type == "video")) ? myAPOD.hdurl : myAPOD.url;
         }
+        /// <summary>
+        /// Get the Uri to the media for the specified date.
+        /// </summary>
+        /// <param name="date">The value to set <see cref="Date"/> to before sending the request.</param>
+        /// <param name="hd">If true and media is an image, the HD uri is returned. Default is false</param>
+        /// <returns>A Uri pointing to the requested media.</returns>
         public async Task<Uri> GetUri(DateTime date, bool hd = false)
         {
             Date = date;
 
             return await GetUri(hd);
         }
+        /// <summary>
+        /// Get the Uri to the media for for the date previous to the current value of <see cref="date"/>.
+        /// </summary>
+        /// <param name="hd">If true and media is an image, the HD uri is returned. Default is false</param>
+        /// <returns>A Uri pointing to the requested media.</returns>
         public async Task<Uri> GetPrevUri(bool hd = false)
         {
             return await GetUri(date.AddDays(-1), hd);
         }
+        /// <summary>
+        /// Get the Uri to the media for for the date proceeding the current value of <see cref="date"/>.
+        /// </summary>
+        /// <param name="hd">If true and media is an image, the HD uri is returned. Default is false</param>
+        /// <returns>A Uri pointing to the requested media.</returns>
         public async Task<Uri> GetNextUri(bool hd = false)
         {
             return await GetUri(date.AddDays(1), hd);
@@ -92,6 +117,7 @@ namespace ApodPcl
         /// The date to request the Astronomy Picture of the Day for.
         /// <para>Valid dates are between 1995-06-16 and today.</para>
         /// </summary>
+        /// <value>Sets the value of the field, <see cref="date"/>, and ensures it is valid.</value>
         public DateTime Date
         {
             set
@@ -104,6 +130,7 @@ namespace ApodPcl
         /// The api key to supply to NASA's API when sending requests.
         /// <para>Obtain a key from http://api.nasa.gov. </para>
         /// </summary>
+        /// <value>Sets the value of the private field, api_key.</value>
         public string API_key { set { api_key = value; } }
         private string api_key;
         private string api_url;
