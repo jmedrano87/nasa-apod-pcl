@@ -137,7 +137,7 @@ namespace ApodPcl
         private DateTime date;
         private APOD myAPOD;
         /// <summary>
-        /// An object for holding data about the returned Astrononmy Picture of the Day.
+        /// Get the returned Astrononmy Picture of the Day as an <see cref="APOD"/> object.
         /// </summary>
         public APOD Apod { get { return myAPOD; } }
     }

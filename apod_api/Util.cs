@@ -16,7 +16,7 @@ namespace ApodPcl
             cacheHeader.MaxStale = true;
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.CacheControl = cacheHeader;
-            client.DefaultRequestHeaders.Add("User-Agent", "nasa-apod-pcl/beta (.Net PCL)");
+            client.DefaultRequestHeaders.Add("User-Agent", "nasa-apod-pcl/0.9 (.Net PCL)");
 
             Stream response = await client.GetStreamAsync(url);
 
