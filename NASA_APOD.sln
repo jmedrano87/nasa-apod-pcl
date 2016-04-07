@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "console_test", "console_test\console_test.csproj", "{63298C6E-3858-4F68-9F73-CFE9C2E310AC}"
 EndProject
@@ -41,7 +41,6 @@ Global
 		{63298C6E-3858-4F68-9F73-CFE9C2E310AC}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{63298C6E-3858-4F68-9F73-CFE9C2E310AC}.Debug|x86.Build.0 = Debug|Any CPU
 		{63298C6E-3858-4F68-9F73-CFE9C2E310AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{63298C6E-3858-4F68-9F73-CFE9C2E310AC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{63298C6E-3858-4F68-9F73-CFE9C2E310AC}.Release|ARM.ActiveCfg = Release|Any CPU
 		{63298C6E-3858-4F68-9F73-CFE9C2E310AC}.Release|ARM.Build.0 = Release|Any CPU
 		{63298C6E-3858-4F68-9F73-CFE9C2E310AC}.Release|x64.ActiveCfg = Release|Any CPU
@@ -77,8 +76,6 @@ Global
 		{C1B443B7-F3C2-4033-87FE-F4EFBC580124}.Debug|x86.Build.0 = Debug|x86
 		{C1B443B7-F3C2-4033-87FE-F4EFBC580124}.Debug|x86.Deploy.0 = Debug|x86
 		{C1B443B7-F3C2-4033-87FE-F4EFBC580124}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C1B443B7-F3C2-4033-87FE-F4EFBC580124}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C1B443B7-F3C2-4033-87FE-F4EFBC580124}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{C1B443B7-F3C2-4033-87FE-F4EFBC580124}.Release|ARM.ActiveCfg = Release|ARM
 		{C1B443B7-F3C2-4033-87FE-F4EFBC580124}.Release|ARM.Build.0 = Release|ARM
 		{C1B443B7-F3C2-4033-87FE-F4EFBC580124}.Release|ARM.Deploy.0 = Release|ARM
@@ -101,8 +98,6 @@ Global
 		{C697FFE5-1121-47DF-94B6-BCDE012EAF63}.Debug|x86.Build.0 = Debug|x86
 		{C697FFE5-1121-47DF-94B6-BCDE012EAF63}.Debug|x86.Deploy.0 = Debug|x86
 		{C697FFE5-1121-47DF-94B6-BCDE012EAF63}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C697FFE5-1121-47DF-94B6-BCDE012EAF63}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C697FFE5-1121-47DF-94B6-BCDE012EAF63}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{C697FFE5-1121-47DF-94B6-BCDE012EAF63}.Release|ARM.ActiveCfg = Release|ARM
 		{C697FFE5-1121-47DF-94B6-BCDE012EAF63}.Release|ARM.Build.0 = Release|ARM
 		{C697FFE5-1121-47DF-94B6-BCDE012EAF63}.Release|ARM.Deploy.0 = Release|ARM
