@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Net;
+using System.Diagnostics;
 
 namespace ApodPcl
 {
@@ -11,18 +11,13 @@ namespace ApodPcl
             API apod_api = new API(key);
             int action;
             DateTime oldestDate = new DateTime(1995, 06, 25);
-            WebClient dl = new WebClient();
             do
             {
                 apod_api.sendRequest().Wait();
                 Console.WriteLine("Title: " + apod_api.Apod.title);
                 Console.WriteLine("Date: " + apod_api.Apod.date.ToShortDateString());
-                Console.WriteLine("[1] Standard");
-                Console.WriteLine("[2] HD");
-                Console.WriteLine("[3] Previous Day");
-                Console.WriteLine("[4] Next Day");
-                Console.WriteLine("[0] Quit.");
-                Console.Write("Enter selection: ");
+                Console.WriteLine("Media type: " + apod_api.Apod.media_type);
+                printMenu(apod_api.Apod.media_type == "image");
 
                 action = int.Parse(Console.ReadLine());
 
@@ -32,34 +27,29 @@ namespace ApodPcl
                         Console.WriteLine("Exiting . . .");
                         break;
                     case 1:
-                        Console.WriteLine("Downloading standard photo . . .");
-                        try {
-                            dl.DownloadFile(apod_api.Apod.url, "apod_"
-                                + apod_api.Apod.date.ToString("yyyy-MM-dd") + "_lq.jpg");
-                            Console.WriteLine("Finished downloading.");
-                        }
-                        catch (WebException ex) {
-                            Console.WriteLine(ex.Message);
-                        }
+                        Console.WriteLine(apod_api.Apod.explanation);
                         break;
                     case 2:
-                        Console.WriteLine("Downloading hd photo . . .");
-                        try {
-                            dl.DownloadFile(apod_api.Apod.hdurl, "apod_"
-                                + apod_api.Apod.date.ToString("yyyy-MM-dd") + "_hq.jpg");
-                            Console.WriteLine("Finished downloading.");
-                        }
-                        catch (WebException ex) {
-                            Console.WriteLine(ex.Message);
+                        if (apod_api.Apod.url != null)
+                        {
+                            Console.WriteLine("Opening . . .");
+                            Process.Start(apod_api.Apod.url.ToString());
                         }
                         break;
                     case 3:
+                        if (apod_api.Apod.hdurl != null)
+                        {
+                            Console.WriteLine("Opening . . .");
+                            Process.Start(apod_api.Apod.hdurl.ToString());
+                        }
+                        break;
+                    case 4:
                         if (apod_api.Apod.date.AddDays(-1) >= oldestDate)
                             apod_api.Date = apod_api.Apod.date.AddDays(-1);
                         else
                             Console.WriteLine("Can't go that far back.");
                         break;
-                    case 4:
+                    case 5:
                         if (apod_api.Apod.date.AddDays(1) <= DateTime.Today)
                             apod_api.Date = apod_api.Apod.date.AddDays(1);
                         else
@@ -71,6 +61,17 @@ namespace ApodPcl
                 }
             }
             while (action != 0);
+        }
+        static void printMenu(bool isImage)
+        {
+
+            Console.WriteLine("[1] Read explanation.");
+            Console.WriteLine("[2] View " + ((isImage) ? "low quality picture." : "video."));
+            Console.WriteLine((isImage) ? "[3] View high quality picture." : "[x] N/A");
+            Console.WriteLine("[4] Previous Day.");
+            Console.WriteLine("[5] Next Day.");
+            Console.WriteLine("[0] Quit.");
+            Console.Write("Enter selection: ");
         }
     }
 }
