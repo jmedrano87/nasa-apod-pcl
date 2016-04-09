@@ -11,12 +11,17 @@ namespace ApodPcl
     {
         static async internal Task<Stream> GetHttpResponseStream(Uri url)
         {
+            HttpClientHandler handler = new HttpClientHandler();
+            if (handler.SupportsAutomaticDecompression)
+                handler.AutomaticDecompression = System.Net.DecompressionMethods.Deflate | System.Net.DecompressionMethods.GZip;
             CacheControlHeaderValue cacheHeader = new CacheControlHeaderValue();
             cacheHeader.MaxAge = TimeSpan.FromDays(7);
             cacheHeader.MaxStale = true;
-            HttpClient client = new HttpClient();
+
+            HttpClient client = new HttpClient(handler);
             client.DefaultRequestHeaders.CacheControl = cacheHeader;
             client.DefaultRequestHeaders.Add("User-Agent", "nasa-apod-pcl/0.9 (.Net PCL)");
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             Stream response = await client.GetStreamAsync(url);
 
