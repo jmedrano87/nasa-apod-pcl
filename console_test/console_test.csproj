@@ -66,17 +66,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\APOD_API\apod_api.csproj">
-      <Project>{272d99e8-acb3-4a53-b0b1-e983d854d3fe}</Project>
-      <Name>apod_api</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\apod_api\apod_api.csproj">
+      <Project>{24867121-eb25-4430-b84d-94669e39a952}</Project>
+      <Name>apod_api</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
